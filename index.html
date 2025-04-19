@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>王子喧的个人简历</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --accent-color: #e74c3c;
+            --light-gray: #ecf0f1;
+            --dark-gray: #7f8c8d;
+            --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+
+        .resume-container {
+            max-width: 1024px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            position: relative;
+            background-image: url("123.jpg");
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .resume-header {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resume-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .resume-header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            opacity: 0.9;
+            z-index: 1;
+        }
+
+        .resume-row {
+            display: flex;
+            flex-wrap: wrap;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .resume-row:hover {
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+
+        .resume-cell {
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            flex: 1;
+            min-height: 80px;
+            border-right: 1px solid rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .resume-cell:last-child {
+            border-right: none;
+        }
+
+        .resume-cell.stuff {
+            background-color: var(--light-gray);
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        .resume-cell.stuff::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background-color: var(--accent-color);
+        }
+
+        .resume-cell:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+
+        .resume-cell.stuff:hover {
+            background-color: #d6eaf8;
+            transform: translateY(-3px) rotate(2deg);
+        }
+
+        .icon {
+            margin-right: 8px;
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .resume-cell:hover .icon {
+            transform: scale(1.2) rotate(15deg);
+            color: var(--primary-color);
+        }
+
+        .photo-cell {
+            flex: 2;
+            padding: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .photo-cell img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+            filter: grayscale(20%);
+        }
+
+        .photo-cell:hover img {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+        }
+
+        .photo-cell::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0));
+            pointer-events: none;
+        }
+
+        .double-width {
+            flex: 2;
+        }
+
+        .full-width {
+            flex: 100%;
+            text-align: left;
+            justify-content: flex-start;
+        }
+
+        .tall-cell {
+            min-height: 90px;
+        }
+
+        .taller-cell {
+            min-height: 160px;
+        }
+
+        .tallest-cell {
+            min-height: 120px;
+        }
+
+        @media (max-width: 768px) {
+            .resume-row {
+                flex-direction: column;
+            }
+            
+            .resume-cell {
+                border-right: none;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                justify-content: flex-start;
+                text-align: left;
+            }
+            
+            .photo-cell {
+                order: -1;
+                height: 300px;
+            }
+        }
+
+        /* 水波动画 */
+        @keyframes ripple {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        .ripple-effect {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+        }
+		.email-content-cell {
+		  padding: 15px 20px; /* 增加内边距 */
+		  word-break: break-word; /* 更优雅的换行方式 */
+		  line-height: 1.5; /* 增加行高 */
+		  text-align: left; /* 左对齐 */
+		  justify-content: flex-start; /* 内容从左侧开始 */
+		}
+		.contact-row {
+		  align-items: stretch; /* 确保行高一致 */
+		}
+		
+		/* 标签单元格优化 */
+		.contact-label {
+		  min-width: 100px; /* 固定标签宽度 */
+		  flex: 0 0 auto; /* 不伸缩 */
+		}
+		
+		/* 内容单元格优化 */
+		.contact-value {
+		  min-width: 120px; /* 固定内容宽度 */
+		  flex: 1 0 auto;
+		  padding: 15px 20px;
+		}
+		
+		/* 电子邮箱特殊样式 */
+		.email-value {
+		  flex: 3; /* 占据剩余空间 */
+		  display: flex;
+		  align-items: center;
+		  padding: 0;
+		}
+		
+		.email-content {
+		  width: 100%;
+		  padding: 15px 20px;
+		  word-break: break-word;
+		  white-space: normal;
+		  line-height: 1.5;
+		  background-color: rgba(255,255,255,0.9);
+		  border-left: 1px solid rgba(0,0,0,0.1);
+		}
+		
+		/* 对齐优化 */
+		.resume-cell {
+		  display: flex;
+		  align-items: center;
+		  justify-content: center;
+		}
+		
+		/* 响应式设计 */
+		@media (max-width: 768px) {
+		  .contact-label, 
+		  .contact-value,
+		  .email-value {
+		    min-width: 100%;
+		    flex: 1 1 100%;
+		  }
+		  
+		  .email-content {
+		    border-left: none;
+		    border-top: 1px solid rgba(0,0,0,0.1);
+		  }
+		}
+    </style>
+</head>
+<body>
+    <div class="resume-container">
+        <div class="resume-header">
+            <h1>个人简历</h1>
+        </div>
+        
+        <!-- 第一行 -->
+        <div class="resume-row">
+            <div class="resume-cell stuff">
+                <i class="fas fa-user icon"></i>姓名
+            </div>
+            <div class="resume-cell">王子喧</div>
+            <div class="resume-cell stuff">
+                <i class="fas fa-venus-mars icon"></i>性别
+            </div>
+            <div class="resume-cell">男</div>
+            <div class="resume-cell stuff">
+                <i class="fas fa-birthday-cake icon"></i>年龄
+            </div>
+            <div class="resume-cell">20</div>
+            <div class="resume-cell photo-cell" rowspan="3">
+                <img src="125.jpg" alt="王子喧的照片">
+            </div>
+        </div>
+        
+        <!-- 第二行（优化对齐版） -->
+        <div class="resume-row contact-row">
+          <!-- 籍贯 -->
+          <div class="resume-cell stuff contact-label">
+            <i class="fas fa-home icon"></i>籍贯
+          </div>
+          <div class="resume-cell contact-value">汉族</div>
+          
+          <!-- 联系电话 -->
+          <div class="resume-cell stuff contact-label">
+            <i class="fas fa-phone icon"></i>联系电话
+          </div>
+          <div class="resume-cell contact-value">17653507371</div>
+          
+          <!-- 电子邮箱 -->
+          <div class="resume-cell stuff contact-label">
+            <i class="fas fa-envelope icon"></i>电子邮箱
+          </div>
+          <div class="resume-cell email-value">
+            <div class="email-content">2149035039@qq.com</div>
+          </div>
+        </div>
+        <!-- 第三行 -->
+        <div class="resume-row">
+            <div class="resume-cell stuff">
+                <i class="fas fa-graduation-cap icon"></i>学历
+            </div>
+            <div class="resume-cell">大学</div>
+            <div class="resume-cell stuff">
+                <i class="fas fa-heartbeat icon"></i>健康状况
+            </div>
+            <div class="resume-cell">健康</div>
+            <div class="resume-cell stuff">
+                <i class="fas fa-heart icon"></i>婚姻状况
+            </div>
+            <div class="resume-cell">未婚</div>
+            <div class="resume-cell photo-cell"></div>
+        </div>
+        
+        <!-- 第四行 -->
+        <div class="resume-row">
+            <div class="resume-cell stuff">
+                <i class="fas fa-briefcase icon"></i>求职意向
+            </div>
+            <div class="resume-cell">暂定</div>
+            <div class="resume-cell stuff">
+                <i class="fas fa-book icon"></i>专业
+            </div>
+            <div class="resume-cell double-width">信息工程</div>
+            <div class="resume-cell stuff">
+                <i class="fas fa-university icon"></i>毕业院校
+            </div>
+            <div class="resume-cell double-width">烟台理工学院</div>
+        </div>
+        
+        <!-- 第五行 -->
+        <div class="resume-row">
+            <div class="resume-cell stuff">
+                <i class="fas fa-certificate icon"></i>技能证书
+            </div>
+            <div class="resume-cell full-width">
+                <i class="fas fa-search icon"></i>无
+            </div>
+        </div>
+        
+        <!-- 第六行 -->
+        <div class="resume-row tall-cell">
+            <div class="resume-cell stuff">
+                <i class="fas fa-star icon"></i>个人特长与爱好
+            </div>
+            <div class="resume-cell full-width">
+                <i class="fas fa-laptop-code icon"></i>喜欢编程
+                <i class="fas fa-book-reader icon" style="margin-left: 15px;"></i>阅读
+            </div>
+        </div>
+        
+        <!-- 第七行 -->
+        <div class="resume-row taller-cell">
+            <div class="resume-cell stuff">
+                <i class="fas fa-project-diagram icon"></i>项目经历
+            </div>
+            <div class="resume-cell full-width">
+                <i class="fas fa-search icon"></i>无
+            </div>
+        </div>
+        
+        <!-- 第八行 -->
+        <div class="resume-row tallest-cell">
+            <div class="resume-cell stuff">
+                <i class="fas fa-comment icon"></i>自我评价
+            </div>
+            <div class="resume-cell full-width">
+                <p>本人综合素质佳，能够吃苦耐劳，忠诚稳重坚守诚信正直原则，勇于挑战自我开发自身潜力；做一个主动的人，工作积极热情，为了自己的目标为了完成自己想要的事情拼命投入力量，具备良好的人品，乐于与人沟通，生活在群体之中，能够与人进行客观直接的沟通，具有较强的团队管理能力和与人合作的精神，能够积极互动努力达成团队的目标，善于学习，勤奋务实，刻苦钻研，具备广泛的兴趣和很丰富的只是，适应能力强，能够在很短时间内融入一个新的领域，适应他并且把他做好。</p>
+                <p>性格开朗的我善于与人交流、谦和虚心，大学至今的三年里，无论是班干还是学生会干事或者是校外兼职都让我学会了很多，社会阅历和经历比以前丰富了，个人能力也不断得到提升。做事的耐心和积极性更加高涨，学习能力充分得到体现，相信以后自己会做的更好。本人性格开朗、稳重、有活力，待人热情、真诚。工作认真负责，积极主动，能吃苦耐劳；喜欢思考，虚心与人交流，以取长补短。有较强的组织能力、实际动手能力和团体协作精神，能迅速的适应各种环境，并融合其中；社会责任感强，踏实肯干，主动争取锻炼机会。不断地完善自己，提高自身素质。</p>
+                <p>在学好专业课与公共课的基础上，还阅读了大量的课外书籍，不断地增加新知识，陶冶情操、开拓视野。不仅如此，本人还积极参加社会实践活动，和各种文体活动，培养了本人一定的组织与社交能力。</p>
+                <p>本人热爱篮球、羽毛球、跑步、下棋、唱歌。所谓人无完人，目前本人发现自己有时候地确很难控制自己的情绪，很多时候处理事情有点感情用事，不够理性。经过仔细分析，本人发现这是由于自制能力不够造成的，本人决定在以后的学习，生活中克服这个毛病。做一名优秀的大学生。</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 添加点击水波效果
+        document.querySelectorAll('.resume-cell').forEach(cell => {
+            cell.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple-effect');
+                this.appendChild(ripple);
+                
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                ripple.style.width = ripple.style.height = `${size}px`;
+                ripple.style.left = `${e.clientX - rect.left - size/2}px`;
+                ripple.style.top = `${e.clientY - rect.top - size/2}px`;
+                
+                ripple.addEventListener('animationend', () => {
+                    ripple.remove();
+                });
+            });
+        });
+    </script>
+</body>
+</html>
